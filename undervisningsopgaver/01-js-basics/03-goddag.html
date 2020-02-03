@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <input type="text" id="navn">
+
+    <div id="knap">Klik her</div>
+
+    <style>
+        #knap {
+            color: black;
+            background-color: aqua;
+            height: 20px;
+            width: 100px
+        }
+
+    </style>
+
+
+    <script>
+        document.querySelector("#knap").addEventListener("click", clickf);
+
+        function clickf() {
+            console.log("Goddag", document.querySelector("#navn").value)
+        }
+
+    </script>
+</body>
+
+</html>
