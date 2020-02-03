@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <input placeholder="Længde" type="text" id="inputl">
+    <input placeholder="Bredde" type="text" id="inputb">
+
+    <div id="knap">Udregn areal</div>
+
+    <style>
+        #knap {
+            color: black;
+            background-color: lightpink;
+            height: 20px;
+            width: 150px;
+            margin: 10px 10px 10px 0;
+            padding: 2px;
+        }
+
+    </style>
+
+    <script>
+        document.querySelector("#knap").addEventListener("click", buttonClick);
+
+        function buttonClick() {
+            let laengde = document.querySelector("#inputl").value;
+            let bredde = document.querySelector("#inputb").value;
+            let areal = laengde * bredde;
+
+            console.log("Areal er:", areal)
+
+        }
+
+    </script>
+</body>
+
+</html>
