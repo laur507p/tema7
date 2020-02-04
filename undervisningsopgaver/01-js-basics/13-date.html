@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <input type="text" placeholder="Dit alder" id="dinalder">
+    <input type="text" placeholder="Din dates alder" id="datealder">
+
+    <button type="button" id="knap">Udregn</button>
+
+
+
+    <script>
+        document.querySelector("#knap").addEventListener("click", udregn);
+
+        function udregn() {
+
+            let dinalder = document.querySelector("#dinalder").value;
+            let datealder = document.querySelector("#datealder").value;
+
+            let dig = datealder / 2 + 7;
+            let date = dinalder / 2 + 7;
+
+            if (dinalder == date && dinalder > 15) {
+                console.log("Tilykke");
+            } else if (dinalder > date) {
+                console.log("Din date er for ung!")
+            } else if (dinalder < date)
+
+
+        }
+
+    </script>
+</body>
+
+</html>

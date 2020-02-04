@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>Hvor gammel er din hund?</p>
+    <input type="text" placeholder="Din hunds alder" id="alderinput">
+    <button type="button" id="knap">Udregn alder</button>
+
+
+    <script>
+        document.querySelector("#knap").addEventListener("click", knapClick)
+
+
+
+
+
+        //        let log = Math.log(alder);
+
+        function knapClick() {
+            let alder = document.querySelector("#alderinput").value;
+            let hundalder = 16 * Math.log(alder) + 31;
+            console.log("Din hunds alder er", hundalder);
+
+        }
+
+    </script>
+</body>
+
+</html>

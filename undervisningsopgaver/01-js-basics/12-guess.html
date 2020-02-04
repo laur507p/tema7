@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <input type="text" id="guessinput" placeholder="Gæt et tal">
+    <button type="button" id="knap">Gæt!</button>
+    <button type="button" id="knap2">Spil igen</button>
+    <script>
+        window.addEventListener("load", start);
+        document.querySelector("#knap").addEventListener("click", guessKnap);
+        document.querySelector("#knap2").addEventListener("click", nytTal);
+
+        function start() {
+            let tal = Math.floor(Math.random() * 20) + 1
+            let tryk = 0;
+        }
+
+
+        function guessKnap() {
+            console.log(tal);
+            let svar = document.querySelector("#guessinput").value;
+
+            tryk++;
+
+            if (svar == tal) {
+                console.log("Du gættede rigtigt!!! og du gættede", tryk, "gange");
+            } else if (tal < svar) {
+                console.log("For højt! Gæt igen!");
+            } else if (tal > svar) {
+                console.log("For lavt! Gæt igen!")
+            }
+        }
+
+        function nytTal() {
+            console.log("restart")
+            start();
+        }
+
+    </script>
+</body>
+
+</html>
