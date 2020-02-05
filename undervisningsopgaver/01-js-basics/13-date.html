@@ -19,21 +19,27 @@
     <script>
         document.querySelector("#knap").addEventListener("click", udregn);
 
-        function udregn() {
 
+
+        function udregn() {
             let dinalder = document.querySelector("#dinalder").value;
             let datealder = document.querySelector("#datealder").value;
 
-            let dig = datealder / 2 + 7;
-            let date = dinalder / 2 + 7;
+            let dig = dinalder / 2 + 7;
+            let date = datealder / 2 + 7;
 
-            if (dinalder == date && dinalder > 15) {
-                console.log("Tilykke");
-            } else if (dinalder > date) {
+
+            if (datealder >= dig && dinalder > 15 && datealder > 15) {
+                console.log("Reglen er overholdt for dig!");
+            } else if (datealder < dig || datealder < 15) {
                 console.log("Din date er for ung!")
-            } else if (dinalder < date)
+            }
 
-
+            if (dinalder >= date && dinalder > 15 && datealder > 15) {
+                console.log("Reglen er overholdt for din date!")
+            } else if (dinalder < date || dinalder < 15) {
+                console.log("Du er for ung til din date!")
+            }
         }
 
     </script>
