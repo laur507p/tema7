@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <div id="gron"></div>
+    <div id="rod"></div>
+
+
+
+    <style>
+        #gron {
+            background-color: green;
+            height: 200px;
+            width: 200px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        #rod {
+            background-color: red;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+        }
+
+    </style>
+    <script>
+        const firkant = document.querySelector("#gron");
+        const cirkel = document.querySelector("#rod");
+
+        firkant.innerHTML = "<img src=\"http://mabe-kea.dk/E19/pics/frog.png\">";
+        cirkel.innerHTML = "<img src=\"http://mabe-kea.dk/E19/pics/pig.png\">";
+
+        let img = document.createElement("img");
+
+        img.src = "http://mabe-kea.dk/E19/pics/fox.png";
+        cirkel.appendChild(img);
+
+    </script>
+</body>
+
+</html>

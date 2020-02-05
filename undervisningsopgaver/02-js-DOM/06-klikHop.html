@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <div id="gron"></div>
+    <div id="rod"></div>
+
+
+
+    <style>
+        #gron {
+            background-color: green;
+            height: 100px;
+            width: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        #rod {
+            background-color: red;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+        }
+
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        const firkant = document.querySelector("#gron");
+        const cirkel = document.querySelector("#rod");
+
+
+
+        function start() {
+            firkant.innerHTML = "<img src=\"http://mabe-kea.dk/E19/pics/frog.png\">";
+            cirkel.innerHTML = "<img src=\"http://mabe-kea.dk/E19/pics/pig.png\">";
+
+            firkant.addEventListener("click", clickGreen);
+            cirkel.addEventListener("click", clickRed);
+
+        }
+
+
+        function clickGreen() {
+            console.log("clickGreen");
+            firkant.innerHTML = "<img src=\"http://mabe-kea.dk/E19/pics/pig.png\">";
+            cirkel.innerHTML = "<img src=\"http://mabe-kea.dk/E19/pics/frog.png\">";
+
+            firkant.removeEventListener("click", clickGreen);
+            firkant.addEventListener("click", start);
+
+        }
+
+        function clickRed() {
+            console.log("clickRed");
+            firkant.removeEventListener("click", clickGreen);
+            firkant.removeEventListener("click", start);
+        }
+
+    </script>
+</body>
+
+</html>
