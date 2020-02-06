@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <p id="sporgsmal">Hvilken farve er et æble?</p>
+    <input type="text" placeholder="Dit svar" id="inputfelt">
+    <button id="knap" type="button">Godkend</button>
+
+    <script>
+        let sporgsmal = document.querySelector("#sporgsmal");
+        let knap = document.querySelector("#knap");
+        let point = 0;
+
+        knap.addEventListener("click", knapKlik);
+
+
+        function knapKlik() {
+            sporgsmal.textContent = "Hvilken farve er en banan?";
+            knap.removeEventListener("click", knapKlik);
+            let svar = document.querySelector("#inputfelt").value;
+
+
+            if (svar == "Rødt") {
+                console.log("Du gættede rigtigt!");
+                point++;
+            } else {
+                console.log("Du gættede forkert!")
+            }
+
+            knap.addEventListener("click", knapKlik2);
+
+        }
+
+        function knapKlik2() {
+            sporgsmal.textContent = "Hvilken farve er en appelsin?";
+            knap.removeEventListener("click", knapKlik2);
+            let svar = document.querySelector("#inputfelt").value;
+
+            if (svar == "Gul") {
+                console.log("Du gættede rigtigt!");
+                point++;
+            } else {
+                console.log("Du gættede forkert!")
+            }
+
+            knap.addEventListener("click", knapKlik3);
+        }
+
+        function knapKlik3() {
+            sporgsmal.textContent = "Hvilken farve er en pære?";
+            knap.removeEventListener("click", knapKlik3);
+            let svar = document.querySelector("#inputfelt").value;
+
+            if (svar == "Orange") {
+                console.log("Du gættede rigtigt!");
+                point++;
+            } else {
+                console.log("Du gættede forkert!")
+            }
+
+            knap.addEventListener("click", knapKlik4);
+
+        }
+
+        function knapKlik4() {
+            sporgsmal.textContent = "Hvilken farve er en citron?";
+            knap.removeEventListener("click", knapKlik4);
+            let svar = document.querySelector("#inputfelt").value;
+
+            if (svar == "Grøn") {
+                console.log("Du gættede rigtigt!");
+                point++;
+            } else {
+                console.log("Du gættede forkert!")
+            }
+
+            knap.addEventListener("click", knapKlik5);
+        }
+
+        function knapKlik5() {
+            knap.removeEventListener("click", knapKlik5);
+            let svar = document.querySelector("#inputfelt").value;
+
+            if (svar == "Gul") {
+                console.log("Du gættede rigtigt!");
+                point++;
+            } else {
+                console.log("Du gættede forkert!")
+            }
+
+            spilSlut();
+        }
+
+        function spilSlut() {
+            console.log("Tilykke du fik", point, "point!");
+        }
+
+    </script>
+</body>
+
+</html>
