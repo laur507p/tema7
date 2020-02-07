@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <template>
+        <article class="dyrinfo">
+            <h3></h3>
+            <img src="" alt="">
+            <p class="type">Type:</p>
+            <p class="levested">Levested</p>
+        </article>
+    </template>
+
+    <section class="data-container"></section>
+
+    <style>
+        article {
+            border: 1px solid black;
+        }
+
+        main {
+            display: grid;
+
+        }
+
+    </style>
+    <script>
+        //test start+++
+        const endpoint = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
+
+        let personer = [];
+
+        function start() {
+            loadData();
+        }
+
+        async function loadData() {
+            const response = await fetch(endpoint);
+            personer = await response.json();
+            console.log(personer);
+        }
+
+
+
+
+
+
+
+
+        //test end +++++
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        // tomt array
+        let dyrListe = [];
+
+        function start() {
+            hentData();
+        }
+
+        async function hentData() {
+
+            const response = await fetch("alledyr.json");
+            console.log(response);
+            dyrListe = await response.json();
+            visDyr();
+
+        }
+
+
+
+        console.log(dyrListe);
+
+        function visDyr() {
+
+            const container = document.querySelector(".data-container");
+            const dyrTemplate = document.querySelector("template");
+
+            dyrListe.forEach(dyrtype => {
+                let klon = dyrTemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = dyrtype.navn;
+                klon.querySelector(".type").textContent = dyrtype.type;
+                klon.querySelector(".levested").textContent = dyrtype.levested;
+                klon.querySelector("img").src = dyrtype.billede;
+                container.appendChild(klon);
+            })
+        }
+
+    </script>
+</body>
+
+</html>
