@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Babsushka</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <template>
+        <article class="ret">
+            <img>
+            <h2></h2>
+            <h3></h3>
+            <p class="info"></p>
+            <p class="pris"></p>
+        </article>
+    </template>
+
+    <aside class="popupbg hide">
+        <article class="infoboks">
+            <button id="infoknap">X</button>
+            <!--gera bakgrunn þannig hægt se að ýta á hann-->
+            <img src="" alt="">
+            <h1></h1>
+            <p class="infolang"></p>
+            <p class="pris"></p>
+            <p class="oprindelse"></p>
+        </article>
+    </aside>
+
+    <header>
+        <h1>Alle</h1>
+        <nav>
+            <button type="button" class="filter valgt" data-mad="alle">Alle</button>
+            <button type="button" class="filter" data-mad="forretter">Forretter</button>
+            <button type="button" class="filter" data-mad="hovedretter">Hovedretter</button>
+            <button type="button" class="filter" data-mad="desserter">Desserter</button>
+            <button type="button" class="filter" data-mad="drikkevarer">Drikkevarer</button>
+        </nav>
+    </header>
+
+    <section class="data-container"></section>
+    <!--    <img src="imgs/small/bondeboller-sm.jpg">-->
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        nav {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .valgt {
+            background-color: black;
+            color: white;
+        }
+
+        .data-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .ret {
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 10px 10px 51px 0px rgba(0, 0, 0, 0.18);
+            cursor: pointer;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-family: helvetica;
+        }
+
+        h3 {
+            font-family: helvetica;
+        }
+
+        p {
+            font-family: helvetica;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .popupbg {
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .infoboks {
+            margin: 30px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #infoknap {
+            font-size: 1rem;
+        }
+
+    </style>
+
+
+    <script>
+        let retterListe = [];
+
+        document.addEventListener("DOMContentLoaded", start);
+
+
+        const link = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json"
+
+        function start() {
+            hentData();
+            addEventlistenersToAllButtons();
+            document
+        }
+
+        async function hentData() {
+            const response = await fetch(link);
+            retterListe = await response.json();
+            console.log(retterListe);
+            visRetter();
+        }
+
+        let filter = "alle";
+        const container = document.querySelector(".data-container");
+        const madTemplate = document.querySelector("template");
+        let image = ""
+
+        function visRetter() {
+            container.innerHTML = "";
+            retterListe.feed.entry.forEach(ret => {
+
+                if (filter == "alle" || filter == ret.gsx$kategori.$t) {
+                    let klon = madTemplate.cloneNode(true).content;
+                    klon.querySelector("h2").textContent = ret.gsx$navn.$t;
+                    klon.querySelector(".info").textContent = ret.gsx$kort.$t;
+                    klon.querySelector(".pris").textContent = "Pris: " + ret.gsx$pris.$t;
+                    klon.querySelector("img").src = "imgs/small/" + ret.gsx$billede.$t + "-sm.jpg";
+                    //                    klon.querySelector(".ret").addEventListener("click", () => {
+                    // visInfo(ret);
+                    // })
+                    container.appendChild(klon);
+                }
+            })
+        }
+
+        function addEventlistenersToAllButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+
+            })
+        }
+
+        function filtrering() {
+            console.log("FILTER");
+            filter = this.dataset.mad;
+            document.querySelector("h1").textContent = this.textContent;
+            document.querySelectorAll(".filter").forEach(elm2 => {
+                elm2.classList.remove("valgt");
+            })
+            this.classList.add("valgt");
+            visRetter();
+        }
+
+        function visInfo() {
+            //console.log(ret);
+            //.classList.remove("hide");
+        }
+
+    </script>
+</body>
+
+</html>
